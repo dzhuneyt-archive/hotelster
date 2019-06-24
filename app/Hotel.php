@@ -14,4 +14,11 @@ class Hotel extends Model
      * @var string
      */
     protected $table = 'hotels';
+
+    // Allow all fields to be updated massively, except these
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
 }

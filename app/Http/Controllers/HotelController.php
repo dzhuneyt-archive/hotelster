@@ -9,20 +9,8 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
-     *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -33,18 +21,7 @@ class HotelController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update a single hotel
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -52,7 +29,10 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        $hotel->update($request->all());
+
+        return response(new \App\Http\Resources\Hotel($hotel));
     }
 
 }

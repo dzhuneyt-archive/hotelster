@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')
+     ->get('/user', function (Request $request) {
+         return $request->user();
+     });
 
 
-// Get single hotel information
 // @TODO apply auth middleware
 Route::get('hotel/{id}', 'HotelController@show');
 
