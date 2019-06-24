@@ -23,6 +23,5 @@ Route::middleware('auth:api')
 
 
 // @TODO apply auth middleware
-Route::get('hotel/{id}', 'HotelController@show');
-
-// @TODO create route to edit hotel information
+Route::apiResource('hotels', 'HotelController');
+Route::apiResource('room_types', 'RoomTypeController');
