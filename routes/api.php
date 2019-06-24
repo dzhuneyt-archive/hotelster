@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Get single hotel information
+// @TODO apply auth middleware
+Route::get('hotel/{id}', 'HotelController@show');
+
+// @TODO create route to edit hotel information
