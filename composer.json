@@ -48,6 +48,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "migrate": [
+            "@php artisan migrate"
+        ],
+        "serve": [
+            "@php artisan serve"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
