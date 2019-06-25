@@ -25,3 +25,4 @@ Route::middleware('auth:api')
 // @TODO apply auth middleware
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('room_types', 'RoomTypeController');
+Route::apiResource('room_capacities', 'RoomCapacityController');

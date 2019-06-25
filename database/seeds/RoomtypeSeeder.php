@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 
 
-class RoomTypeSeeder extends Seeder
+class RoomtypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

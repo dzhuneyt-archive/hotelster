@@ -14,7 +14,7 @@ https://app.codeline.io/#/projects/2562/tasks/24598
 
 ## Migrate and seed the database
 
-    php artisan migrate:refresh --seed
+    composer dump-autoload && php artisan migrate:refresh --seed
 
 # Contributing
 
