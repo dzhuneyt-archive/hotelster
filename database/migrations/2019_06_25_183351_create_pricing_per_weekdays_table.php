@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 
 
-class CreateRoomsTable extends Migration
+class CreatePricingPerWeekdaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,14 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('pricing_per_weekdays', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('hotel_id');
+            $table->smallInteger('weekday_index')
+                  ->comment('0 - Monday, 6 - Sunday');
             $table->unsignedBigInteger('room_type_id');
             $table->unsignedBigInteger('room_capacity_id');
-            $table->string('room_image_url')
-                  ->nullable();
+            $table->integer('daily_price')
+                  ->comment('Daily price for that weekday in USD');
 
             $table->foreign('room_type_id')
                   ->references('id')
@@ -42,6 +42,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('pricing_per_weekdays');
     }
 }

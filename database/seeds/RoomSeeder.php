@@ -15,7 +15,7 @@ class RoomSeeder extends Seeder
     public function run()
     {
         // Increment if needed
-        $howManyRooms = 20;
+        $howManyRooms = 10;
 
         factory(Room::class, $howManyRooms)
             ->create()

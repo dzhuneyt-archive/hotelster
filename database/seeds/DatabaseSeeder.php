@@ -15,9 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             HotelsSeeder::class,
+
             RoomtypeSeeder::class,
             RoomCapacitySeeder::class,
             RoomSeeder::class,
+
+            PricingPerWeekdaySeeder::class,
+            PricingPerDateRangeSeeder::class,
         ]);
     }
 }

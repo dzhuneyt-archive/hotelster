@@ -53,6 +53,8 @@ $RECYCLE.BIN/
 .idea/php.xml
 .idea/misc.xml
 .idea/modules.xml
+.idea/inspectionProfiles/*
+.idea/*plugin.xml
 .idea/tasks.xml
 # and these sensitive or high-churn files:
 .idea/dataSources.ids
