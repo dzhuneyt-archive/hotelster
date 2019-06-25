@@ -14,4 +14,9 @@ class RoomCapacity extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'room_capacity_id');
+    }
 }

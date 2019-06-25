@@ -26,3 +26,4 @@ Route::middleware('auth:api')
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('room_types', 'RoomTypeController');
 Route::apiResource('room_capacities', 'RoomCapacityController');
+Route::apiResource('rooms', 'RoomController');
