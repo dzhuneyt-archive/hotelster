@@ -17,17 +17,11 @@ class Room extends Model
     protected $hidden = [
         'hotel_id',
         'room_type_id',
-        'room_capacity_id',
     ];
 
     public function roomType()
     {
         return $this->hasOne(RoomType::class, 'id', 'room_type_id');
-    }
-
-    public function roomCapacity()
-    {
-        return $this->hasOne(RoomCapacity::class, 'id', 'room_capacity_id');
     }
 
     public function hotel()

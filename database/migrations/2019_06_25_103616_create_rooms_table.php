@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 
 
@@ -20,17 +20,12 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->string('hotel_id');
             $table->unsignedBigInteger('room_type_id');
-            $table->unsignedBigInteger('room_capacity_id');
             $table->string('room_image_url')
                   ->nullable();
 
             $table->foreign('room_type_id')
                   ->references('id')
                   ->on('room_types');
-
-            $table->foreign('room_capacity_id')
-                  ->references('id')
-                  ->on('room_capacities');
             $table->timestamps();
         });
     }

@@ -23,8 +23,5 @@ $factory->define(Room::class, function (Faker $faker) {
         'room_type_id' => RoomType::all()
                                   ->shuffle()
                                   ->first()->id,
-        'room_capacity_id' => RoomCapacity::all()
-                                          ->shuffle()
-                                          ->first()->id,
     ];
 });

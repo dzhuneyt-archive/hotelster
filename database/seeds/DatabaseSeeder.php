@@ -17,11 +17,9 @@ class DatabaseSeeder extends Seeder
             HotelsSeeder::class,
 
             RoomtypeSeeder::class,
-            RoomCapacitySeeder::class,
             RoomSeeder::class,
 
             PricingPerWeekdaySeeder::class,
-            PricingPerDateRangeSeeder::class,
         ]);
     }
 }

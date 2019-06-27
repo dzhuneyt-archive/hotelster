@@ -35,7 +35,6 @@ class RoomController extends Controller
             'name' => 'required',
             'hotel_id' => 'required',
             'room_type_id' => 'required',
-            'room_capacity_id' => 'required',
         ]);
         if ($validator->fails()) {
             return $validator->errors();
