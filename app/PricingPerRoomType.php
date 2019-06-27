@@ -11,15 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer room_type_id
  * @property integer room_capacity_id
  */
-class PricingPerWeekday extends Model
+class PricingPerRoomType extends Model
 {
-    protected $table = 'pricing_per_weekdays';
+    protected $table = 'pricing_per_roomtype';
 
     protected $guarded = [
         'id',
         'created_at',
         'updated_at',
         'room_type_id',
-        'room_capacity_id',
     ];
 }

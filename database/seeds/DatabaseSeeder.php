@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             RoomtypeSeeder::class,
             RoomSeeder::class,
 
-            PricingPerWeekdaySeeder::class,
+            PricingPerRoomTypeSeeder::class,
         ]);
     }
 }

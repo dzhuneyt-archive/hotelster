@@ -1,12 +1,12 @@
 <?php
 
-use App\PricingPerWeekday;
+use App\PricingPerRoomType;
 use App\RoomType;
 use Illuminate\Database\Seeder;
 
 
 
-class PricingPerWeekdaySeeder extends Seeder
+class PricingPerRoomTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class PricingPerWeekdaySeeder extends Seeder
 
         // Add an initial fixed price for each room_type
         foreach ($roomTypes as $roomType) {
-            PricingPerWeekday::create([
+            PricingPerRoomType::create([
                 'room_type_id' => $roomType->id,
                 'daily_price' => 99,
             ]);

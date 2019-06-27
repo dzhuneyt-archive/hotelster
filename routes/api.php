@@ -31,19 +31,19 @@ Route::prefix('price')
      ->group(function () {
          Route::get(
              '{room_type_id}',
-             'PricingPerWeekdayController@show'
+             'PricingPerRoomTypeController@show'
          );
          Route::put(
              '{room_type_id}',
-             'PricingPerWeekdayController@store'
+             'PricingPerRoomTypeController@store'
          );
          Route::post(
              '{room_type_id}',
-             'PricingPerWeekdayController@store'
+             'PricingPerRoomTypeController@store'
          );
          Route::delete(
              '{room_type_id}',
-             'PricingPerWeekdayController@delete'
+             'PricingPerRoomTypeController@delete'
          );
          // @TODO create POST room pricing endpoint
      });

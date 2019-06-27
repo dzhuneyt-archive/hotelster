@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 
 
-class CreatePricingPerWeekdaysTable extends Migration
+class CreatePricingPerRoomTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreatePricingPerWeekdaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('pricing_per_weekdays', function (Blueprint $table) {
+        Schema::create('pricing_per_roomtype', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('room_type_id');
             $table->integer('daily_price')
@@ -35,6 +35,6 @@ class CreatePricingPerWeekdaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pricing_per_weekdays');
+        Schema::dropIfExists('pricing_per_roomtype');
     }
 }
