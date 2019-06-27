@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\PricingPerRoomType;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 
 
@@ -18,15 +21,19 @@ class PricingPerRoomTypeController extends Controller
         return PricingPerRoomType::all();
     }
 
-    public function show($weekday, $room_type_id, $room_capacity_id)
+    public function show($room_type_id)
     {
-        return PricingPerRoomType::where('weekday_index', $weekday)
-                                 ->where('room_type_id', $room_type_id)
-                                 ->where('room_capacity_id', $room_capacity_id)
+        return PricingPerRoomType::where('room_type_id', $room_type_id)
                                  ->first();
     }
 
-    public function store(Request $request, $weekday, $room_type_id, $room_capacity_id)
+    /**
+     * @param Request $request
+     * @param $room_type_id
+     * @return PricingPerRoomType|ResponseFactory|Response
+     * @throws Throwable
+     */
+    public function store(Request $request, $room_type_id)
     {
         $validator = Validator::make($request->all(), [
             'daily_price' => 'required',
@@ -36,16 +43,12 @@ class PricingPerRoomTypeController extends Controller
             return response($validator->errors(), 400);
         }
 
-        $model = PricingPerRoomType::where('weekday_index', $weekday)
-                                   ->where('room_type_id', $room_type_id)
-                                   ->where('room_capacity_id', $room_capacity_id)
+        $model = PricingPerRoomType::where('room_type_id', $room_type_id)
                                    ->first();
 
         if (!$model) {
             $model = new PricingPerRoomType();
-            $model->weekday_index = $weekday;
             $model->room_type_id = $room_type_id;
-            $model->room_capacity_id = $room_capacity_id;
         }
 
         $model->daily_price = $request->get('daily_price');
@@ -54,11 +57,9 @@ class PricingPerRoomTypeController extends Controller
         return $model;
     }
 
-    public function delete($weekday, $room_type_id, $room_capacity_id)
+    public function delete($room_type_id)
     {
-        $model = PricingPerRoomType::where('weekday_index', $weekday)
-                                   ->where('room_type_id', $room_type_id)
-                                   ->where('room_capacity_id', $room_capacity_id)
+        $model = PricingPerRoomType::where('room_type_id', $room_type_id)
                                    ->first();
 
         if (!$model) {
