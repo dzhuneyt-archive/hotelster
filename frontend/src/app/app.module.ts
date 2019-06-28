@@ -10,6 +10,8 @@ import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
 import {RoomsTypesListingComponent} from './rooms-types-listing/rooms-types-listing.component';
 import {RoomsTypePricesListingComponent} from './rooms-type-prices-listing/rooms-type-prices-listing.component';
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {BookingsListingComponent} from './bookings-listing/bookings-listing.comp
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentsModuleModule

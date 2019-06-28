@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factory;
 /* @var $factory Factory */
 $factory->define(Hotel::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
         'address' => $faker->address,
         'city' => $faker->city,
         'state' => $faker->words(1, true),

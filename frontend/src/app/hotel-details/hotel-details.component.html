@@ -1,36 +1,41 @@
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Hotel name">
+    <input matInput placeholder="Hotel name" [(ngModel)]="hotel.name">
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Address"></textarea>
+    <textarea matInput placeholder="Address" [(ngModel)]="hotel.address"></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="City"/>
+    <input matInput placeholder="City" [(ngModel)]="hotel.city"/>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="State"/>
+    <input matInput placeholder="State" [(ngModel)]="hotel.state"/>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="ZIP code"/>
-  </mat-form-field>
-
-
-  <mat-form-field>
-    <input matInput placeholder="Phone number"/>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Email"/>
+    <input matInput placeholder="ZIP code" [(ngModel)]="hotel.zip_code"/>
   </mat-form-field>
 
 
   <mat-form-field>
-    <input matInput placeholder="Logo URL"/>
+    <input matInput placeholder="Phone number" [(ngModel)]="hotel.phone_number"/>
   </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" [(ngModel)]="hotel.email"/>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Logo URL" [(ngModel)]="hotel.image_url"/>
+  </mat-form-field>
+
+  <div *ngIf="hotel.image_url"><img [src]="hotel.image_url" class="logo"/><br/><br/></div>
+
+  <button mat-raised-button color="primary" (click)="save()">Save changes</button>
 
 </div>
+
