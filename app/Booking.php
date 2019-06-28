@@ -15,7 +15,8 @@ class Booking extends Model
     protected $guarded = [
         'id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'user_id',
     ];
 
     /**
