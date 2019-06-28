@@ -1,0 +1,11 @@
+<table mat-table [dataSource]="data">
+  <!-- Generic column definition -->
+
+  <mat-header-row *matHeaderRowDef="columnsToShow"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToShow;"></mat-row>
+
+  <ng-container *ngFor="let column of columns; let colIndex = index" [cdkColumnDef]="column.code">
+    <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let row">{{ renderColumns(row, colIndex) }}</mat-cell>
+  </ng-container>
+</table>

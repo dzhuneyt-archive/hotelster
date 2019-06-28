@@ -12,6 +12,9 @@ import {RoomsTypePricesListingComponent} from './rooms-type-prices-listing/rooms
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {TableComponent} from './table/table.component';
+import {MatTableModule} from "@angular/material";
+import {CdkTableModule} from "@angular/cdk/table";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     RoomsListingComponent,
     RoomsTypesListingComponent,
     RoomsTypePricesListingComponent,
-    BookingsListingComponent
+    BookingsListingComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialComponentsModuleModule
+    MaterialComponentsModuleModule,
+    MatTableModule,
+    CdkTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
