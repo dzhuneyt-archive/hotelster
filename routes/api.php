@@ -26,6 +26,7 @@ Route::middleware('auth:api')
 Route::apiResource('hotels', 'HotelController');
 Route::apiResource('room_types', 'RoomTypeController');
 Route::apiResource('rooms', 'RoomController');
+Route::apiResource('booking', 'BookingController');
 
 Route::prefix('price')
      ->group(function () {

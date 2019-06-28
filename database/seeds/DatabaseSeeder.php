@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
 
             PricingPerRoomTypeSeeder::class,
+
+            BookingSeeder::class,
         ]);
     }
 }

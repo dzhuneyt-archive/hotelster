@@ -2,57 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
+use App\Booking;
+use App\Http\Resources\BookingResource;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
 
-class RoomController extends Controller
+class BookingController extends Controller
 {
     use ValidatesRequests;
 
     public function index()
     {
-        return Room::all();
+        return BookingResource::collection(Booking::all());
     }
 
     public function show($id)
     {
-        $model = Room::with([
-            'roomType',
-            'hotel'
+        $model = Booking::with([
         ])
-                     ->find($id);
-        return $model;
+                        ->find($id);
+        return new BookingResource($model);
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'hotel_id' => 'required',
-            'room_type_id' => 'required',
+            'room_id' => 'integer|required',
+            'start' => 'date|required',
+            'end' => 'date|required',
+            'customer_fullname' => 'string|required',
+            'customer_email' => 'email|required',
         ]);
         if ($validator->fails()) {
             return $validator->errors();
         }
 
-        return Room::create($request->all());
+        return new BookingResource(Booking::create($request->all()));
     }
 
     public function update(Request $request, $id)
     {
-        $model = Room::findOrFail($id);
+        $model = Booking::findOrFail($id);
         $model->update($request->all());
 
-        return $model;
+        return new BookingResource($model);
     }
 
     public function delete(Request $request, $id)
     {
-        $model = Room::findOrFail($id);
+        $model = Booking::findOrFail($id);
         $model->delete();
 
         return 204;
