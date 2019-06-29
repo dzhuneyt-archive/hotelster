@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialComponentsModuleModule} from './material-components-module/material-components-module.module';
 import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
-import {RoomsTypesListingComponent} from './rooms-types-listing/rooms-types-listing.component';
+import {RoomTypesListingComponent} from 'src/app/rooms-types-listing/room-types-listing.component';
 import {RoomsTypePricesListingComponent} from './rooms-type-prices-listing/rooms-type-prices-listing.component';
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,7 +21,7 @@ import {CdkTableModule} from '@angular/cdk/table';
     AppComponent,
     HotelDetailsComponent,
     RoomsListingComponent,
-    RoomsTypesListingComponent,
+    RoomTypesListingComponent,
     RoomsTypePricesListingComponent,
     BookingsListingComponent,
     TableComponent

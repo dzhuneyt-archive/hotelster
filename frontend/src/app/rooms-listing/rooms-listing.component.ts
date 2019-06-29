@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TableColumn} from 'src/app/table/table.component';
-import {RoomListDataSource} from 'src/app/rooms-listing/room-listing.datasource';
+import {RoomListDataSource} from 'src/app/rooms-listing/rooms-listing.datasource';
 import {RoomInterface} from 'src/interfaces/room.interface';
 import {TitleService} from 'src/app/title.service';
 

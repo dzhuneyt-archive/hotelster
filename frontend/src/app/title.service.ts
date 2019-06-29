@@ -7,7 +7,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class TitleService {
 
-  public siteTitle = 'Booking';
+  public siteTitle = 'Hotel management';
 
   // Allow multiple places of the app to subscribe to this single source of truth for title
   public titleChanges = new BehaviorSubject(this.siteTitle);

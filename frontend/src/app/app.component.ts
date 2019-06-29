@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {TitleService} from 'src/app/title.service';
 
 @Component({
@@ -6,8 +6,21 @@ import {TitleService} from 'src/app/title.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(public title: TitleService) {
+export class AppComponent implements OnInit {
 
+  public pageTitle;
+
+  constructor(
+    public title: TitleService,
+    private ref: ChangeDetectorRef,
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.title.titleChanges.subscribe(value => {
+      this.pageTitle = value;
+      this.ref.detectChanges();
+    });
   }
 }
