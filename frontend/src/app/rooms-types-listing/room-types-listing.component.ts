@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TitleService} from '../title.service';
-import {TableColumn} from '../table/table.component';
+import {TableAction, TableColumn} from '../table/table.component';
 import {RoomTypesListingDatasource} from './room-types-listing.datasource';
 import {RoomTypeInterface} from "src/interfaces/room-type.interface";
 
@@ -21,6 +21,27 @@ export class RoomTypesListingComponent implements OnInit {
     {
       code: 'daily_price', header: 'Price per night', renderer: (row: RoomTypeInterface) => '$' + row.daily_price
     },
+  ];
+
+  public tableActions: TableAction[] = [
+    {
+      code: 'edit',
+      label: 'Edit',
+      onClick: (row) => {
+        console.log('editing');
+        console.log(row);
+      },
+      icon: 'edit'
+    },
+    {
+      code: 'delete',
+      label: 'Delete',
+      onClick: (row) => {
+        console.log('deleting');
+        console.log(row);
+      },
+      icon: 'delete'
+    }
   ];
 
   constructor(

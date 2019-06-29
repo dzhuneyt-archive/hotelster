@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TableColumn} from 'src/app/table/table.component';
+import {TableAction, TableColumn} from 'src/app/table/table.component';
 import {TitleService} from 'src/app/title.service';
 import {BookingsListingDatasource} from 'src/app/bookings-listing/bookings-listing.datasource';
 import {BookingInterface} from 'src/interfaces/booking.interface';
@@ -39,6 +39,27 @@ export class BookingsListingComponent implements OnInit {
         return '$' + row.price + ' for ' + row.total_nights + ' nights';
       }
     },
+  ];
+
+  public tableActions: TableAction[] = [
+    {
+      code: 'edit',
+      label: 'Edit',
+      onClick: (row) => {
+        console.log('editing');
+        console.log(row);
+      },
+      icon: 'edit'
+    },
+    {
+      code: 'delete',
+      label: 'Delete',
+      onClick: (row) => {
+        console.log('deleting');
+        console.log(row);
+      },
+      icon: 'delete'
+    }
   ];
 
   constructor(

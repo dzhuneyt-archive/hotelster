@@ -1,8 +1,9 @@
-<table mat-table [dataSource]="data">
+<table *ngIf="columns" [dataSource]="data" mat-table>
   <!-- Generic column definition -->
 
   <mat-header-row *matHeaderRowDef="columnsToShow"></mat-header-row>
   <mat-row *matRowDef="let row; columns: columnsToShow;"></mat-row>
+
 
   <ng-container *ngFor="let column of columns; let colIndex = index" [cdkColumnDef]="column.code">
     <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
@@ -13,6 +14,20 @@
       </ng-container>
       <ng-container *ngIf="!column.raw">
         {{ renderColumns(row, colIndex) }}
+      </ng-container>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Render table actions, if any -->
+  <ng-container *ngIf="actions.length>0" [cdkColumnDef]="'actions'">
+    <mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <ng-container *ngFor="let action of actions">
+
+        <button (click)="action.onClick(row)" [attr.aria-label]="action.label" mat-icon-button>
+          <mat-icon *ngIf="action.icon">{{action.icon}}</mat-icon>
+        </button>
+
       </ng-container>
     </mat-cell>
   </ng-container>

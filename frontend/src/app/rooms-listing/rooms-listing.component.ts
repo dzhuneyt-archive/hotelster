@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TableColumn} from 'src/app/table/table.component';
+import {TableAction, TableColumn} from 'src/app/table/table.component';
 import {RoomListDataSource} from 'src/app/rooms-listing/rooms-listing.datasource';
 import {RoomInterface} from 'src/interfaces/room.interface';
 import {TitleService} from 'src/app/title.service';
@@ -32,6 +32,27 @@ export class RoomsListingComponent implements OnInit {
         return row.room_type.name;
       }
     },
+  ];
+
+  public tableActions: TableAction[] = [
+    {
+      code: 'edit',
+      label: 'Edit',
+      onClick: (row) => {
+        console.log('editing');
+        console.log(row);
+      },
+      icon: 'edit'
+    },
+    {
+      code: 'delete',
+      label: 'Delete',
+      onClick: (row) => {
+        console.log('deleting');
+        console.log(row);
+      },
+      icon: 'delete'
+    }
   ];
 
   constructor(

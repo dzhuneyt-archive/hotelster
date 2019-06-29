@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {DataSource} from "@angular/cdk/table";
+import {DataSource} from '@angular/cdk/table';
 
 export interface TableColumn {
   code: string;
@@ -13,6 +13,13 @@ export interface TableColumn {
   raw?: boolean;
 }
 
+export interface TableAction {
+  code: string;
+  label: string;
+  onClick: (row: any) => any;
+  icon?: string;
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -20,16 +27,22 @@ export interface TableColumn {
 })
 export class TableComponent {
 
+  @Input() actions: TableAction[] = [];
   @Input() data: DataSource<any>;
-  @Input() columns: TableColumn[];
-
-  displayedColumns = [];
+  @Input() columns: TableColumn[] = [];
 
   get columnsToShow() {
-    if (this.displayedColumns.length > 0) {
-      return this.displayedColumns;
+    if (!this.columns) {
+      return [];
     }
-    return this.columns.map((item: TableColumn) => item.code);
+
+    const columns = this.columns.map((item: TableColumn) => item.code);
+
+    // If there are any actions provided, push a "virtual" actions column to the columns definitions
+    if (this.actions !== null && this.actions.length > 0) {
+      columns.push('actions');
+    }
+    return columns;
   }
 
   renderColumns(row, index) {
