@@ -19,6 +19,11 @@ class Booking extends Model
         'user_id',
     ];
 
+    public function room()
+    {
+        return $this->hasOne(Room::class, 'id', 'room_id');
+    }
+
     /**
      * @return mixed
      * @throws Exception

@@ -17,12 +17,16 @@ class PricingPerRoomTypeSeeder extends Seeder
     {
         $roomTypes = RoomType::all();
 
+        $randomPrice = 109;
+
         // Add an initial fixed price for each room_type
         foreach ($roomTypes as $roomType) {
             PricingPerRoomType::create([
                 'room_type_id' => $roomType->id,
-                'daily_price' => 99,
+                'daily_price' => $randomPrice,
             ]);
+
+            $randomPrice = $randomPrice + 10;
         }
 
 

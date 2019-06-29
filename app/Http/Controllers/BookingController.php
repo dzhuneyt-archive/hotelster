@@ -16,12 +16,14 @@ class BookingController extends Controller
 
     public function index()
     {
-        return BookingResource::collection(Booking::all());
+        return BookingResource::collection(Booking::with(['room'])
+                                                  ->get());
     }
 
     public function show($id)
     {
         $model = Booking::with([
+
         ])
                         ->find($id);
         return new BookingResource($model);
