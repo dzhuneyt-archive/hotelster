@@ -4,6 +4,7 @@ import {BackendService} from 'src/app/backend.service';
 import {CollectionViewer} from '@angular/cdk/collections';
 import {Observable, Observer} from 'rxjs';
 import {RoomTypeInterface} from 'src/interfaces/room-type.interface';
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class RoomTypesListingDatasource extends DataSource<any> {
@@ -14,7 +15,9 @@ export class RoomTypesListingDatasource extends DataSource<any> {
 
   connect(collectionViewer: CollectionViewer): Observable<any[] | ReadonlyArray<any>> {
     return Observable.create((observer: Observer<RoomTypeInterface[]>) => {
-      this.backend.request('api/room_types', 'GET').subscribe((rooms: RoomTypeInterface[]) => {
+      this.backend.request('api/room_types', 'GET').pipe(map(
+        res => res.data
+      )).subscribe((rooms: RoomTypeInterface[]) => {
         observer.next(rooms);
         observer.complete();
       });

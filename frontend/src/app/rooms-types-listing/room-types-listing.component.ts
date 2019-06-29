@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TitleService} from '../title.service';
 import {TableColumn} from '../table/table.component';
 import {RoomTypesListingDatasource} from './room-types-listing.datasource';
+import {RoomTypeInterface} from "src/interfaces/room-type.interface";
 
 @Component({
   selector: 'app-rooms-types-listing',
@@ -16,6 +17,9 @@ export class RoomTypesListingComponent implements OnInit {
   public columns: TableColumn[] = [
     {
       code: 'name', header: 'Name'
+    },
+    {
+      code: 'daily_price', header: 'Price per night', renderer: (row: RoomTypeInterface) => '$' + row.daily_price
     },
   ];
 

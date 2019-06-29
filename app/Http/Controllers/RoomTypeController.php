@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RoomTypeResource;
 use App\RoomType;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class RoomTypeController extends Controller
 
     public function index()
     {
-        return RoomType::all();
+        return RoomTypeResource::collection(RoomType::all());
     }
 
     public function show($id)

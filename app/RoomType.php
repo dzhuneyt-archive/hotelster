@@ -21,4 +21,10 @@ class RoomType extends Model
     {
         return $this->hasMany(Room::class, 'room_type_id');
     }
+
+    public function getDailyPriceAttribute()
+    {
+        return PricingPerRoomType::where('room_type_id', $this->id)
+                                 ->value('daily_price');
+    }
 }
