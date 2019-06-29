@@ -5,7 +5,7 @@
     <span class="example-spacer"></span>
 
     <mat-menu #rootMenu="matMenu">
-      <button mat-menu-item routerLink="hotel-details" routerLinkActive="true">Edit hotel details</button>
+      <button mat-menu-item routerLink="hotel-details" routerLinkActive="true">Manage hotel details</button>
       <button mat-menu-item routerLink="room-listing" routerLinkActive="true">Manage rooms</button>
       <button mat-menu-item>Manage room types</button>
       <button mat-menu-item>Manage prices per room type</button>
@@ -20,6 +20,10 @@
     </button>
 
   </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="title.titleChanges | async">
+  <span>{{title.titleChanges | async}}</span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

@@ -10,11 +10,11 @@ import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
 import {RoomsTypesListingComponent} from './rooms-types-listing/rooms-types-listing.component';
 import {RoomsTypePricesListingComponent} from './rooms-type-prices-listing/rooms-type-prices-listing.component';
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 import {TableComponent} from './table/table.component';
-import {MatTableModule} from "@angular/material";
-import {CdkTableModule} from "@angular/cdk/table";
+import {MatTableModule, MatToolbarModule} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import {CdkTableModule} from "@angular/cdk/table";
     MaterialComponentsModuleModule,
     MatTableModule,
     CdkTableModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

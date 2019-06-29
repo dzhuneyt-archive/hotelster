@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableColumn} from 'src/app/table/table.component';
 import {RoomListDataSource} from 'src/app/rooms-listing/room-listing.datasource';
 import {RoomInterface} from 'src/interfaces/room.interface';
+import {TitleService} from 'src/app/title.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {RoomInterface} from 'src/interfaces/room.interface';
     RoomListDataSource,
   ]
 })
-export class RoomsListingComponent {
+export class RoomsListingComponent implements OnInit {
 
   public columns: TableColumn[] = [
     {
@@ -26,11 +27,21 @@ export class RoomsListingComponent {
     {
       code: 'name', header: 'Name'
     },
+    {
+      code: 'room_type', header: 'Room Type', renderer: (row: RoomInterface) => {
+        return row.room_type.name;
+      }
+    },
   ];
 
   constructor(
     public dataSource: RoomListDataSource,
+    public title: TitleService,
   ) {
+  }
+
+  ngOnInit() {
+    this.title.setTitle('Rooms management');
   }
 
 }

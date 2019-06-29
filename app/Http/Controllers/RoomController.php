@@ -15,7 +15,8 @@ class RoomController extends Controller
 
     public function index()
     {
-        return Room::all();
+        return Room::with(['roomType', 'hotel'])
+                   ->get();
     }
 
     public function show($id)

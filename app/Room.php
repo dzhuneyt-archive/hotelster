@@ -26,6 +26,6 @@ class Room extends Model
 
     public function hotel()
     {
-        return $this->belongsTo(Hotel::class, 'id');
+        return $this->hasOne(Hotel::class, 'id', 'hotel_id');
     }
 }
