@@ -1,18 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {from, Observable, Observer, of} from "rxjs";
-import {DataSource} from "@angular/cdk/table";
-import {CollectionViewer} from "@angular/cdk/collections";
-import {TableColumn} from "src/app/table/table.component";
+import {Component, Injectable} from '@angular/core';
+import {Observable, Observer} from 'rxjs';
+import {DataSource} from '@angular/cdk/table';
+import {CollectionViewer} from '@angular/cdk/collections';
+import {TableColumn} from 'src/app/table/table.component';
+import {BackendService} from 'src/app/backend.service';
 
+interface RoomInterface {
+  id: number;
+  name: string;
+  room_image_url: string;
+}
+
+@Injectable()
 class RoomListDataSource extends DataSource<any> {
+
+  constructor(private backend: BackendService) {
+    super();
+  }
+
   connect(collectionViewer: CollectionViewer): Observable<any[] | ReadonlyArray<any>> {
-    return of([
-      {
-        userName: 'john',
-        progress: '30%',
-        userId: 'userid here'
-      }
-    ]);
+    console.log('connect');
+
+    collectionViewer.viewChange.subscribe(res => {
+      // console.log('viewChange', res);
+    });
+
+    return Observable.create((observer: Observer<RoomInterface[]>) => {
+      this.backend.request('api/rooms', 'GET').subscribe((rooms: RoomInterface[]) => {
+        console.log(rooms);
+        observer.next(rooms);
+        observer.complete();
+      });
+    });
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
@@ -23,26 +42,30 @@ class RoomListDataSource extends DataSource<any> {
 @Component({
   selector: 'app-rooms-listing',
   templateUrl: './rooms-listing.component.html',
-  styleUrls: ['./rooms-listing.component.scss']
+  styleUrls: ['./rooms-listing.component.scss'],
+  providers: [
+    RoomListDataSource,
+  ]
 })
-export class RoomsListingComponent implements OnInit {
+export class RoomsListingComponent {
 
-  public dataSource: DataSource<any>;
   public columns: TableColumn[] = [
-    {code: 'userId', header: 'ID'},
     {
-      code: 'userName', header: 'Name', renderer: (row: any) => {
-        return row['userName'];
-      }
+      code: 'image',
+      header: 'Room Image',
+      renderer: (room: RoomInterface) => {
+        return `<img src="` + room.room_image_url + `"/>`;
+      },
+      raw: true,
     },
-    {code: 'progress', header: 'Progress', renderer: (row: any) => `${row['progress']}`},
+    {
+      code: 'name', header: 'Name'
+    },
   ];
 
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.dataSource = new RoomListDataSource();
+  constructor(
+    public dataSource: RoomListDataSource,
+  ) {
   }
 
 }

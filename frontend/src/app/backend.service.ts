@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpRequest, HttpResponse} from "@angular/common/http";
-
+import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 // All the RxJS stuff we need
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {HotelInterface} from "src/interfaces/hotel.interface";
-import {query} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,7 @@ export class BackendService {
   ) {
   }
 
-  request(path: string, method: any = 'GET', bodyParams?: Object, queryParams?: HttpParams): Observable<HotelInterface> {
+  request(path: string, method: any = 'GET', bodyParams?: object, queryParams?: HttpParams): Observable<any> {
     const url = this.host + '/' + path;
     console.log(url);
 
@@ -38,18 +35,21 @@ export class BackendService {
           params: queryParams,
         });
     }
-    return this.http.request(req).pipe(
+    return this.http.request(
+      method,
+      url,
+      {
+        body: bodyParams,
+        params: queryParams,
+      }
+    ).pipe(
       map(this.parseData),
       catchError(this.handleError)
-    ) as unknown as Observable<HotelInterface>;
+    ) as Observable<any>;
   }
 
-  private parseData(res: HttpResponse<any>) {
-    const body = res.body;
-    if (body === undefined) {
-      return [];
-    }
-    return body;
+  private parseData(res: any) {
+    return res;
   }
 
   // Displays the error message

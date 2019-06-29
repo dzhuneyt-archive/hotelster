@@ -6,6 +6,14 @@
 
   <ng-container *ngFor="let column of columns; let colIndex = index" [cdkColumnDef]="column.code">
     <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
-    <mat-cell *cdkCellDef="let row">{{ renderColumns(row, colIndex) }}</mat-cell>
+    <mat-cell *cdkCellDef="let row">
+
+      <ng-container *ngIf="column.raw">
+        <span [innerHTML]="renderColumns(row, colIndex)"></span>
+      </ng-container>
+      <ng-container *ngIf="!column.raw">
+        {{ renderColumns(row, colIndex) }}
+      </ng-container>
+    </mat-cell>
   </ng-container>
 </table>

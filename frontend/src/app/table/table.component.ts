@@ -1,10 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DataSource} from "@angular/cdk/table";
 
 export interface TableColumn {
   code: string;
   header: string;
+
+  // A custom lambda function that will handle the rendering of this cell
   renderer?: (row: any) => any;
+
+  // Whether or not the cell will render HTML tags that need to be parsed
+  // Causes Angular to strip HTML sanitization so make sure user input is filtered for columns that use this flag
+  raw?: boolean;
 }
 
 @Component({
