@@ -22,6 +22,7 @@ class BookingResource extends JsonResource
 
         $res['total_nights'] = $this->total_nights;
         $res['price'] = $this->price;
+        $res['is_past'] = $this->is_past;
 
         unset($res['room_id']);
         return $res;

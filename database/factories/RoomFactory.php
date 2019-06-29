@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Factory;
 
 
 
-$factory->define(Room::class, function (Faker $faker) {
+$incrementRooms = 0;
+$factory->define(Room::class, function (Faker $faker) use (&$incrementRooms) {
 
+    $incrementRooms++;
     return [
-        'name' => 'Room ' . $faker->numberBetween(101, 999),
+        'name' => 'Room #' . $incrementRooms,
         'room_image_url' => $faker->imageUrl(),
 
         'hotel_id' => Hotel::all()

@@ -9,4 +9,5 @@ export interface BookingInterface {
   room: RoomInterface;
   total_nights: number;
   price: number;
+  is_past: boolean;
 }

@@ -33,6 +33,14 @@ class Booking extends Model
         return (new DateTime($this->start))->diff(new DateTime($this->end))->days;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function getIsPastAttribute()
+    {
+        return new DateTime() > (new DateTime($this->start));
+    }
+
     public function getPriceAttribute()
     {
         $room = Room::with(['roomType'])

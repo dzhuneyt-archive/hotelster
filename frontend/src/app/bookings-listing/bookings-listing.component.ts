@@ -16,7 +16,9 @@ export class BookingsListingComponent implements OnInit {
 
   public columns: TableColumn[] = [
     {
-      code: 'start', header: 'Check in date'
+      code: 'start', header: 'Check in date', renderer: (row: BookingInterface) => {
+        return row.start + (row.is_past ? ' (passed)' : '');
+      }
     },
     {
       code: 'end', header: 'Check out date'
