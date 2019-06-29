@@ -8,7 +8,6 @@ import {MaterialComponentsModuleModule} from './material-components-module/mater
 import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
 import {RoomTypesListingComponent} from 'src/app/rooms-types-listing/room-types-listing.component';
-import {RoomsTypePricesListingComponent} from './rooms-type-prices-listing/rooms-type-prices-listing.component';
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -22,7 +21,6 @@ import {CdkTableModule} from '@angular/cdk/table';
     HotelDetailsComponent,
     RoomsListingComponent,
     RoomTypesListingComponent,
-    RoomsTypePricesListingComponent,
     BookingsListingComponent,
     TableComponent
   ],
