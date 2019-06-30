@@ -7,6 +7,15 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Room</mat-label>
+      <mat-select [(ngModel)]="room.room_type.id">
+        <mat-option *ngFor="let roomType of roomTypes" [value]="roomType.id">
+          {{roomType.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
       <input [(ngModel)]="room.room_image_url" matInput placeholder="Logo URL"/>
     </mat-form-field>
 
