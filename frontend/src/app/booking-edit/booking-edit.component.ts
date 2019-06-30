@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BackendService} from 'src/app/backend.service';
 import {BookingInterface} from 'src/interfaces/booking.interface';
 import {map} from 'rxjs/operators';
-import {RoomInterface} from "src/interfaces/room.interface";
+import {RoomInterface} from 'src/interfaces/room.interface';
 
 @Component({
   selector: 'app-booking-edit',
@@ -39,8 +39,13 @@ export class BookingEditComponent implements OnInit {
   }
 
   public save() {
-    const payload = {...this.booking};
+    const payload: any = {...this.booking};
     // Make API happy
+    payload.room_id = this.booking.room.id;
+    delete payload.room;
+    delete payload.total_nights;
+    delete payload.price;
+    delete payload.is_past;
     this.backend.request('api/bookings/' + this.data.id, 'PUT', payload).subscribe(result => {
       console.log(result);
       this.dialogSelfRef.close(true);

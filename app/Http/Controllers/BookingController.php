@@ -48,13 +48,14 @@ class BookingController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $model = Booking::findOrFail($id);
         $model->update($request->all());
 
         return new BookingResource($model);
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $model = Booking::findOrFail($id);
         $model->delete();
