@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\RoomTypeResource;
+use App\PricingPerRoomType;
 use App\RoomType;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -21,7 +23,7 @@ class RoomTypeController extends Controller
 
     public function show($id)
     {
-        return RoomType::find($id);
+        return new RoomTypeResource(RoomType::find($id));
     }
 
     public function store(Request $request)
@@ -35,15 +37,33 @@ class RoomTypeController extends Controller
         return RoomType::create($request->all());
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function update(Request $request, $id)
     {
         $model = RoomType::findOrFail($id);
-        $model->update($request->all());
+
+        DB::transaction(function () use (&$model, $request) {
+            $model->update($request->all([
+                'name'
+            ]));
+
+            if ($request->get('daily_price')) {
+                $pricingModel = PricingPerRoomType::where('room_type_id', $model->id)
+                                                  ->first();
+                $pricingModel->daily_price = $request->get('daily_price');
+                $pricingModel->save();
+            }
+        });
+
 
         return $model;
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $model = RoomType::findOrFail($id);
         $model->delete();

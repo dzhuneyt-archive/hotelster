@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {TitleService} from '../title.service';
 import {TableAction, TableColumn} from '../table/table.component';
 import {RoomTypesListingDatasource} from './room-types-listing.datasource';
-import {RoomTypeInterface} from "src/interfaces/room-type.interface";
+import {RoomTypeInterface} from 'src/interfaces/room-type.interface';
+import {MatDialog} from '@angular/material';
+import {RoomTypeEditComponent} from 'src/app/room-type-edit/room-type-edit.component';
+import {RoomTypeDeleteComponent} from 'src/app/room-type-delete/room-type-delete.component';
 
 @Component({
   selector: 'app-rooms-types-listing',
@@ -27,18 +30,28 @@ export class RoomTypesListingComponent implements OnInit {
     {
       code: 'edit',
       label: 'Edit',
-      onClick: (row) => {
-        console.log('editing');
-        console.log(row);
+      onClick: (row: RoomTypeInterface) => {
+        this.dialogService.open(RoomTypeEditComponent, {
+          data: {
+            id: row.id
+          }
+        }).afterClosed().subscribe(res => {
+          window.location.reload();
+        });
       },
       icon: 'edit'
     },
     {
       code: 'delete',
       label: 'Delete',
-      onClick: (row) => {
-        console.log('deleting');
-        console.log(row);
+      onClick: (row: RoomTypeInterface) => {
+        this.dialogService.open(RoomTypeDeleteComponent, {
+          data: {
+            id: row.id
+          }
+        }).afterClosed().subscribe(res => {
+          window.location.reload();
+        });
       },
       icon: 'delete'
     }
@@ -47,6 +60,7 @@ export class RoomTypesListingComponent implements OnInit {
   constructor(
     public title: TitleService,
     public dataSource: RoomTypesListingDatasource,
+    private dialogService: MatDialog,
   ) {
   }
 

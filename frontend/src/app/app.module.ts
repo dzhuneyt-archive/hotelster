@@ -16,6 +16,8 @@ import {MatDialogModule, MatTableModule, MatToolbarModule} from '@angular/materi
 import {CdkTableModule} from '@angular/cdk/table';
 import {RoomEditComponent} from './room-edit/room-edit.component';
 import {RoomDeleteComponent} from './room-delete/room-delete.component';
+import {RoomTypeDeleteComponent} from './room-type-delete/room-type-delete.component';
+import {RoomTypeEditComponent} from './room-type-edit/room-type-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {RoomDeleteComponent} from './room-delete/room-delete.component';
     BookingsListingComponent,
     TableComponent,
     RoomEditComponent,
-    RoomDeleteComponent
+    RoomDeleteComponent,
+    RoomTypeDeleteComponent,
+    RoomTypeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import {RoomDeleteComponent} from './room-delete/room-delete.component';
     // ComponentFactory for them otherwise
     RoomEditComponent,
     RoomDeleteComponent,
+    RoomTypeEditComponent,
+    RoomTypeDeleteComponent,
   ],
 })
 export class AppModule {
