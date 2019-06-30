@@ -22,6 +22,8 @@ class CreatePricingPerRoomTypeTable extends Migration
                   ->comment('Daily price for this room type in USD');
 
             $table->foreign('room_type_id')
+                  ->onDelete('CASCADE')
+                  ->onUpdate('CASCADE')
                   ->references('id')
                   ->on('room_types');
             $table->timestamps();

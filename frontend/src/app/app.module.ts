@@ -12,8 +12,10 @@ import {BookingsListingComponent} from './bookings-listing/bookings-listing.comp
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {TableComponent} from './table/table.component';
-import {MatTableModule, MatToolbarModule} from '@angular/material';
+import {MatDialogModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
+import {RoomEditComponent} from './room-edit/room-edit.component';
+import {RoomDeleteComponent} from './room-delete/room-delete.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {CdkTableModule} from '@angular/cdk/table';
     RoomsListingComponent,
     RoomTypesListingComponent,
     BookingsListingComponent,
-    TableComponent
+    TableComponent,
+    RoomEditComponent,
+    RoomDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +38,17 @@ import {CdkTableModule} from '@angular/cdk/table';
     MatTableModule,
     CdkTableModule,
     MatToolbarModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    // Declare all components that will be used inside
+    // dialogs here, because Angular will not generate a
+    // ComponentFactory for them otherwise
+    RoomEditComponent,
+    RoomDeleteComponent,
+  ],
 })
 export class AppModule {
 }

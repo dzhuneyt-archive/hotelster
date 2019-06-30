@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Modify room</h2>
+<mat-dialog-content *ngIf="room">
+
+  <div class="example-container">
+    <mat-form-field>
+      <input [(ngModel)]="room.name" matInput placeholder="Room name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="room.room_image_url" matInput placeholder="Logo URL"/>
+    </mat-form-field>
+
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button (click)="save()" mat-button>Save Changes</button>
+</mat-dialog-actions>

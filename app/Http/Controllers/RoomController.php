@@ -52,7 +52,7 @@ class RoomController extends Controller
         return $model;
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $model = Room::findOrFail($id);
         $model->delete();

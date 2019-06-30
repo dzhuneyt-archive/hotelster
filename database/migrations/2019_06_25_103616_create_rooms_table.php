@@ -24,6 +24,8 @@ class CreateRoomsTable extends Migration
                   ->nullable();
 
             $table->foreign('room_type_id')
+                  ->onDelete('CASCADE')
+                  ->onUpdate('CASCADE')
                   ->references('id')
                   ->on('room_types');
             $table->timestamps();

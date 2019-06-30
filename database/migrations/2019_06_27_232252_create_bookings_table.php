@@ -27,6 +27,8 @@ class CreateBookingsTable extends Migration
                   ->nullable();
 
             $table->foreign('room_id')
+                  ->onDelete('CASCADE')
+                  ->onUpdate('CASCADE')
                   ->on('rooms')
                   ->references('id');
 
