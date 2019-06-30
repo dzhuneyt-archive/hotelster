@@ -5,14 +5,18 @@
     <span class="example-spacer"></span>
 
     <mat-menu #rootMenu="matMenu">
-      <button mat-menu-item routerLink="hotel-details" routerLinkActive="true">Manage hotel details</button>
-      <button mat-menu-item routerLink="room-listing" routerLinkActive="true">Manage rooms</button>
-      <button mat-menu-item routerLink="room-types-listing" routerLinkActive="true">Manage room types and prices
+      <button mat-menu-item routerLink="room-listing" routerLinkActive="true">Rooms</button>
+      <button mat-menu-item routerLink="room-types-listing" routerLinkActive="true">Room types and prices
       </button>
     </mat-menu>
 
-    <button [matMenuTriggerFor]="rootMenu" mat-button>
+
+    <button mat-button routerLink="hotel-details" routerLinkActive="true">
       My hotel
+    </button>
+
+    <button [matMenuTriggerFor]="rootMenu" mat-button>
+      Manage
     </button>
 
     <button mat-button routerLink="bookings" routerLinkActive="true">

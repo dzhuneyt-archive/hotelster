@@ -1,40 +1,40 @@
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Hotel name" [(ngModel)]="hotel.name">
+    <input [(ngModel)]="hotel.name" matInput placeholder="Hotel name" required>
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="Address" [(ngModel)]="hotel.address"></textarea>
+    <textarea [(ngModel)]="hotel.address" matInput placeholder="Address" required></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="City" [(ngModel)]="hotel.city"/>
+    <input [(ngModel)]="hotel.city" matInput placeholder="City" required/>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="State" [(ngModel)]="hotel.state"/>
+    <input [(ngModel)]="hotel.state" matInput placeholder="State" required/>
   </mat-form-field>
 
   <mat-form-field>
-    <input [(ngModel)]="hotel.country" matInput placeholder="Country"/>
+    <input [(ngModel)]="hotel.country" matInput placeholder="Country" required/>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="ZIP code" [(ngModel)]="hotel.zip_code"/>
-  </mat-form-field>
-
-
-  <mat-form-field>
-    <input matInput placeholder="Phone number" [(ngModel)]="hotel.phone_number"/>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Email" [(ngModel)]="hotel.email"/>
+    <input [(ngModel)]="hotel.zip_code" matInput placeholder="ZIP code" required/>
   </mat-form-field>
 
 
   <mat-form-field>
-    <input matInput placeholder="Logo URL" [(ngModel)]="hotel.image_url"/>
+    <input [(ngModel)]="hotel.phone_number" matInput placeholder="Phone number" required/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input [(ngModel)]="hotel.email" matInput placeholder="Email" required/>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input [(ngModel)]="hotel.image_url" matInput placeholder="Logo URL" required/>
   </mat-form-field>
 
   <div *ngIf="hotel.image_url"><img [src]="hotel.image_url" class="logo"/><br/><br/></div>
