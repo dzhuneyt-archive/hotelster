@@ -3,12 +3,12 @@
 
   <div class="example-container">
     <mat-form-field>
-      <input [(ngModel)]="room.name" matInput placeholder="Room name">
+      <input [(ngModel)]="room.name" matInput placeholder="Room name" required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Room</mat-label>
-      <mat-select [(ngModel)]="room.room_type.id">
+      <mat-select [(ngModel)]="room.room_type.id" required>
         <mat-option *ngFor="let roomType of roomTypes" [value]="roomType.id">
           {{roomType.name}}
         </mat-option>
@@ -16,7 +16,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input [(ngModel)]="room.room_image_url" matInput placeholder="Logo URL"/>
+      <input [(ngModel)]="room.room_image_url" matInput placeholder="Logo URL" required/>
     </mat-form-field>
 
   </div>

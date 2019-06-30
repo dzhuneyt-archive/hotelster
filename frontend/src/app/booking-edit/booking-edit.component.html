@@ -3,25 +3,25 @@
 
   <div class="example-container">
     <mat-form-field>
-      <input [(ngModel)]="booking.start" matInput placeholder="Start date">
+      <input [(ngModel)]="booking.start" matInput placeholder="Start date" required>
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="booking.end" matInput placeholder="End date">
+      <input [(ngModel)]="booking.end" matInput placeholder="End date" required>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Room</mat-label>
-      <mat-select [(ngModel)]="booking.room.id">
+      <mat-select [(ngModel)]="booking.room.id" required>
         <mat-option *ngFor="let room of rooms" [value]="room.id">
           {{room.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="booking.customer_fullname" matInput placeholder="Customer name">
+      <input [(ngModel)]="booking.customer_fullname" matInput placeholder="Customer name" required>
     </mat-form-field>
 
     <mat-form-field>
-      <input [(ngModel)]="booking.customer_email" matInput placeholder="Customer email">
+      <input [(ngModel)]="booking.customer_email" matInput placeholder="Customer email" required>
     </mat-form-field>
 
   </div>
