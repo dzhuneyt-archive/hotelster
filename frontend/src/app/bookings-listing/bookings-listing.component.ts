@@ -17,6 +17,9 @@ import {BookingDeleteComponent} from 'src/app/booking-delete/booking-delete.comp
 })
 export class BookingsListingComponent implements OnInit {
 
+  // tslint:disable-next-line:max-line-length
+  // @TODO Allow viewing bookings in calendar mode (calendar should be filtered by month, year and display reserved dates with booking info by clicking on it)
+
   public columns: TableColumn[] = [
     {
       code: 'start', header: 'Check in date'

@@ -27,6 +27,7 @@ Route::apiResource('hotels', 'HotelController');
 Route::apiResource('room_types', 'RoomTypeController');
 Route::apiResource('rooms', 'RoomController');
 Route::apiResource('bookings', 'BookingController');
+// @TODO Add API method to allow non-registered users to add a reservation (it's related to Wordpress task)
 
 Route::prefix('price')
      ->group(function () {
