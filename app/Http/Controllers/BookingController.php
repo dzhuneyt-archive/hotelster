@@ -24,7 +24,7 @@ class BookingController extends Controller
     public function show($id)
     {
         $model = Booking::with([
-
+            'room'
         ])
                         ->find($id);
         return new BookingResource($model);

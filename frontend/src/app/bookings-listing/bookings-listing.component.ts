@@ -3,6 +3,9 @@ import {TableAction, TableColumn} from 'src/app/table/table.component';
 import {TitleService} from 'src/app/title.service';
 import {BookingsListingDatasource} from 'src/app/bookings-listing/bookings-listing.datasource';
 import {BookingInterface} from 'src/interfaces/booking.interface';
+import {MatDialog} from '@angular/material';
+import {BookingEditComponent} from 'src/app/booking-edit/booking-edit.component';
+import {BookingDeleteComponent} from 'src/app/booking-delete/booking-delete.component';
 
 @Component({
   selector: 'app-bookings-listing',
@@ -46,8 +49,13 @@ export class BookingsListingComponent implements OnInit {
       code: 'edit',
       label: 'Edit',
       onClick: (row) => {
-        console.log('editing');
-        console.log(row);
+        this.dialogService.open(BookingEditComponent, {
+          data: {
+            id: row.id
+          }
+        }).afterClosed().subscribe(res => {
+          window.location.reload();
+        });
       },
       icon: 'edit'
     },
@@ -55,8 +63,13 @@ export class BookingsListingComponent implements OnInit {
       code: 'delete',
       label: 'Delete',
       onClick: (row) => {
-        console.log('deleting');
-        console.log(row);
+        this.dialogService.open(BookingDeleteComponent, {
+          data: {
+            id: row.id
+          }
+        }).afterClosed().subscribe(res => {
+          window.location.reload();
+        });
       },
       icon: 'delete'
     }
@@ -65,6 +78,7 @@ export class BookingsListingComponent implements OnInit {
   constructor(
     public title: TitleService,
     public dataSource: BookingsListingDatasource,
+    private dialogService: MatDialog,
   ) {
   }
 

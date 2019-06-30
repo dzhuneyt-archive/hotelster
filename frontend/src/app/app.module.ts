@@ -18,6 +18,8 @@ import {RoomEditComponent} from './room-edit/room-edit.component';
 import {RoomDeleteComponent} from './room-delete/room-delete.component';
 import {RoomTypeDeleteComponent} from './room-type-delete/room-type-delete.component';
 import {RoomTypeEditComponent} from './room-type-edit/room-type-edit.component';
+import {BookingEditComponent} from './booking-edit/booking-edit.component';
+import {BookingDeleteComponent} from './booking-delete/booking-delete.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {RoomTypeEditComponent} from './room-type-edit/room-type-edit.component';
     RoomEditComponent,
     RoomDeleteComponent,
     RoomTypeDeleteComponent,
-    RoomTypeEditComponent
+    RoomTypeEditComponent,
+    BookingEditComponent,
+    BookingDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,8 @@ import {RoomTypeEditComponent} from './room-type-edit/room-type-edit.component';
     RoomDeleteComponent,
     RoomTypeEditComponent,
     RoomTypeDeleteComponent,
+    BookingEditComponent,
+    BookingDeleteComponent,
   ],
 })
 export class AppModule {
