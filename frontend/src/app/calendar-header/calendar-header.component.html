@@ -11,14 +11,14 @@
           color="primary"
           mat-stroked-button
           mwlCalendarPreviousView
-  >Previous
+  >Previous month
   </button>
   <button (viewDateChange)="viewDateChange.next(viewDate)"
           [(viewDate)]="viewDate"
           color="primary"
           mat-stroked-button
           mwlCalendarToday
-  >Today
+  >This month
   </button>
   <button (viewDateChange)="viewDateChange.next(viewDate)"
           [(viewDate)]="viewDate"
@@ -26,7 +26,7 @@
           color="primary"
           mat-stroked-button
           mwlCalendarNextView
-  >Next
+  >Next month
   </button>
 </div>
 

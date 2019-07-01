@@ -14,11 +14,21 @@ class BookingController extends Controller
 {
     use ValidatesRequests;
 
-    public function index()
+    public function index(Request $request)
     {
-        return BookingResource::collection(Booking::with(['room'])
-                                                  ->orderBy('start')
-                                                  ->get());
+        $fromDate = $request->get('from_date');
+        $toDate = $request->get('to_date');
+
+        $query = Booking::with(['room']);
+        if ($fromDate) {
+            $query->whereDate('start', '>', $fromDate);
+        }
+        if ($toDate) {
+            $query->whereDate('start', '<', $toDate);
+        }
+        return BookingResource::collection($query
+            ->orderBy('start')
+            ->get());
     }
 
     public function show($id)

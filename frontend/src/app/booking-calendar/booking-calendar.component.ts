@@ -15,6 +15,8 @@ import {
 import {map} from 'rxjs/operators';
 import {CalendarEvent} from 'angular-calendar';
 import {TitleService} from "src/app/title.service";
+import {BackendService} from "src/app/backend.service";
+import {BookingInterface} from "src/interfaces/booking.interface";
 
 function getTimezoneOffsetString(date: Date): string {
   const timezoneOffset = date.getTimezoneOffset();
@@ -42,6 +44,10 @@ const colors: any = {
   }
 };
 
+function formatEventTitle(booking: BookingInterface) {
+  return `${booking.room.name} booked by ${booking.customer_fullname} for ${booking.total_nights} nights - ` + booking.start + ' - ' + booking.end;
+}
+
 
 @Component({
   selector: 'app-booking-calendar',
@@ -60,6 +66,7 @@ export class BookingCalendarComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private title: TitleService,
+              private backend: BackendService,
   ) {
   }
 
@@ -83,29 +90,32 @@ export class BookingCalendarComponent implements OnInit {
 
     const params = new HttpParams()
       .set(
-        'primary_release_date.gte',
+        'from_date',
         format(getStart(this.viewDate), 'YYYY-MM-DD')
       )
       .set(
-        'primary_release_date.lte',
+        'to_date',
         format(getEnd(this.viewDate), 'YYYY-MM-DD')
-      )
-      .set('api_key', '0ec33936a68018857d727958dca1424f');
+      );
 
-    this.events$ = this.http
-      .get('https://api.themoviedb.org/3/discover/movie', {params})
+    this.events$ = this.backend
+      .request('api/bookings', 'GET', {}, params)
       .pipe(
-        map(({results}: { results: any[] }) => {
-          return results.map((film: any) => {
+        map(res => res.data),
+        map(results => {
+          return results.map((booking: BookingInterface) => {
             return {
-              title: film.title,
+              title: formatEventTitle(booking),
               start: new Date(
-                film.release_date + getTimezoneOffsetString(this.viewDate)
+                booking.start + getTimezoneOffsetString(this.viewDate)
+              ),
+              end: new Date(
+                booking.end + getTimezoneOffsetString(this.viewDate)
               ),
               color: colors.yellow,
               allDay: true,
               meta: {
-                film
+                film: booking
               }
             };
           });
@@ -133,11 +143,8 @@ export class BookingCalendarComponent implements OnInit {
     }
   }
 
-  eventClicked(event: CalendarEvent<{ film: any }>): void {
-    window.open(
-      `https://www.themoviedb.org/movie/${event.meta.film.id}`,
-      '_blank'
-    );
+  eventClicked(event: CalendarEvent<{ event: any }>): void {
+
   }
 
 }
