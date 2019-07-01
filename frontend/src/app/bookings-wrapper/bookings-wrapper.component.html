@@ -1,0 +1,6 @@
+<button (click)="switch('list')" color="primary" mat-stroked-button>List View</button>
+&nbsp;
+<button (click)="switch('calendar')" color="primary" mat-stroked-button>Calendar View</button>
+
+<app-booking-calendar *ngIf="viewMode==='calendar'"></app-booking-calendar>
+<app-bookings-listing *ngIf="viewMode==='list'"></app-bookings-listing>

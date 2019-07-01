@@ -1,0 +1,25 @@
+<mwl-demo-utils-calendar-header
+  (viewChange)="fetchEvents()"
+  (viewDateChange)="fetchEvents()"
+  [(view)]="view"
+  [(viewDate)]="viewDate"
+>
+</mwl-demo-utils-calendar-header>
+
+<ng-template #loading>
+  <div class="text-center">
+    <i class="fa fa-spin fa-spinner fa-5x"></i> <br/>
+    Loading events...
+  </div>
+</ng-template>
+
+<div *ngIf="events$ | async; else loading; let events">
+  <mwl-calendar-month-view
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="eventClicked($event.event)"
+    [activeDayIsOpen]="activeDayIsOpen"
+    [events]="events"
+    [viewDate]="viewDate"
+  >
+  </mwl-calendar-month-view>
+</div>

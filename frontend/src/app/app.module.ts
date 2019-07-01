@@ -20,6 +20,11 @@ import {RoomTypeDeleteComponent} from './room-type-delete/room-type-delete.compo
 import {RoomTypeEditComponent} from './room-type-edit/room-type-edit.component';
 import {BookingEditComponent} from './booking-edit/booking-edit.component';
 import {BookingDeleteComponent} from './booking-delete/booking-delete.component';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {BookingCalendarComponent} from './booking-calendar/booking-calendar.component';
+import {CalendarHeaderComponent} from './calendar-header/calendar-header.component';
+import {BookingsWrapperComponent} from './bookings-wrapper/bookings-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import {BookingDeleteComponent} from './booking-delete/booking-delete.component'
     RoomTypeDeleteComponent,
     RoomTypeEditComponent,
     BookingEditComponent,
-    BookingDeleteComponent
+    BookingDeleteComponent,
+    BookingCalendarComponent,
+    CalendarHeaderComponent,
+    BookingsWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +55,7 @@ import {BookingDeleteComponent} from './booking-delete/booking-delete.component'
     CdkTableModule,
     MatToolbarModule,
     MatDialogModule,
+    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
   ],
   providers: [],
   bootstrap: [AppComponent],

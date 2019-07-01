@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 
 
@@ -18,7 +18,6 @@ class CreateHotelTable extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            // @TODO refine if names larger than 255 characters are allowed for a hotel name
             $table->string('name');
 
             $table->text('address');
@@ -26,7 +25,7 @@ class CreateHotelTable extends Migration
             $table->string('state');
             $table->string('country');
 
-            // @TODO does it support numbers only, always? Research zip code formats in different countries
+            // Given the zip code can vary in terms of formats, store it as string
             $table->string('zip_code');
 
             // Defined as string, because may include special characters. Examples: "+359/328888" or "0894/123456"

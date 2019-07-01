@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HotelDetailsComponent} from './hotel-details/hotel-details.component';
 import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
 import {RoomTypesListingComponent} from './rooms-types-listing/room-types-listing.component';
-import {BookingsListingComponent} from 'src/app/bookings-listing/bookings-listing.component';
+import {BookingsWrapperComponent} from 'src/app/bookings-wrapper/bookings-wrapper.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'bookings',
-    component: BookingsListingComponent,
+    component: BookingsWrapperComponent,
   },
   {
     path: '**',

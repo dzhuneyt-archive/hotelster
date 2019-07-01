@@ -1,0 +1,33 @@
+<div class="center">
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
+  </div>
+</div>
+
+<div class="center">
+
+  <button (viewDateChange)="viewDateChange.next(viewDate)" [(viewDate)]="viewDate"
+          [view]="view"
+          color="primary"
+          mat-stroked-button
+          mwlCalendarPreviousView
+  >Previous
+  </button>
+  <button (viewDateChange)="viewDateChange.next(viewDate)"
+          [(viewDate)]="viewDate"
+          color="primary"
+          mat-stroked-button
+          mwlCalendarToday
+  >Today
+  </button>
+  <button (viewDateChange)="viewDateChange.next(viewDate)"
+          [(viewDate)]="viewDate"
+          [view]="view"
+          color="primary"
+          mat-stroked-button
+          mwlCalendarNextView
+  >Next
+  </button>
+</div>
+
+<br/>
