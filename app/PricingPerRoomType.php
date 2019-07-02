@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer weekday_index
  * @property integer room_type_id
- * @property integer room_capacity_id
  */
 class PricingPerRoomType extends Model
 {

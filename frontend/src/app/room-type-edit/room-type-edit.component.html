@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Modify room</h2>
+<h2 *ngIf="!isNewRecord()" mat-dialog-title>Modify room type</h2>
+<h2 *ngIf="isNewRecord()" mat-dialog-title>Create room type</h2>
 <mat-dialog-content *ngIf="roomType">
 
   <div class="example-container">

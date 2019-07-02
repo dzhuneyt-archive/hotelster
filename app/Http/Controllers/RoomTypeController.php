@@ -30,11 +30,23 @@ class RoomTypeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'daily_price' => 'required|numeric'
         ]);
         if ($validator->fails()) {
-            return $validator->errors();
+            return response($validator->errors(), 400);
         }
-        return RoomType::create($request->all());
+        $model = null;
+        DB::transaction(function () use ($request, &$model) {
+            $model = RoomType::create([
+                'name' => $request->get('name'),
+            ]);
+            $pricingModel = new PricingPerRoomType();
+            $pricingModel->room_type_id = $model->id;
+            $pricingModel->daily_price = $request->get('daily_price');
+            $pricingModel->save();
+        });
+
+        return $model;
     }
 
     /**

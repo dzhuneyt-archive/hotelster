@@ -36,7 +36,9 @@ export class RoomTypesListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'edit'
@@ -50,7 +52,9 @@ export class RoomTypesListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'delete'
@@ -66,6 +70,18 @@ export class RoomTypesListingComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Room types management');
+  }
+
+  createNew() {
+    this.dialogService.open(RoomTypeEditComponent, {
+      data: {
+        // id: row.id
+      }
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        window.location.reload();
+      }
+    });
   }
 
 }
