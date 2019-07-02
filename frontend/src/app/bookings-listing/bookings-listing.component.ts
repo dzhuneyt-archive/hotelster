@@ -55,7 +55,9 @@ export class BookingsListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'edit'
@@ -69,7 +71,9 @@ export class BookingsListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'delete'

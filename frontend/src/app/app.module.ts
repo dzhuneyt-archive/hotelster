@@ -12,7 +12,7 @@ import {BookingsListingComponent} from './bookings-listing/bookings-listing.comp
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TableComponent} from './table/table.component';
-import {MatDialogModule, MatSnackBarModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {MatDialogModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {RoomEditComponent} from './room-edit/room-edit.component';
 import {RoomDeleteComponent} from './room-delete/room-delete.component';
@@ -25,6 +25,7 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {BookingCalendarComponent} from './booking-calendar/booking-calendar.component';
 import {CalendarHeaderComponent} from './calendar-header/calendar-header.component';
 import {BookingsWrapperComponent} from './bookings-wrapper/bookings-wrapper.component';
+import {BackendService} from "src/app/backend.service";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,10 @@ import {BookingsWrapperComponent} from './bookings-wrapper/bookings-wrapper.comp
     MatSnackBarModule,
     CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
   ],
-  providers: [],
+  providers: [
+    MatSnackBar,
+    BackendService,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     // Declare all components that will be used inside

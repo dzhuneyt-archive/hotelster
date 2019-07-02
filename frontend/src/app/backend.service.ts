@@ -4,21 +4,19 @@ import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BackendService {
 
   private host = 'http://localhost:8000';
+  private auth_token = 'api_token_1';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
   }
 
   request(path: string, method: any = 'GET', bodyParams?: object, queryParams?: HttpParams): Observable<any> {
     const url = this.host + '/' + path;
-    console.log(url);
 
     let req = null;
     switch (method) {
@@ -41,6 +39,9 @@ export class BackendService {
       {
         body: bodyParams,
         params: queryParams,
+        headers: {
+          'Authorization': 'Bearer ' + this.auth_token,
+        }
       }
     ).pipe(
       map(this.parseData),
@@ -54,6 +55,9 @@ export class BackendService {
 
   // Displays the error message
   private handleError(response: Response | any) {
+    if (response.status === 401) {
+      console.error('Unauthenticated');
+    }
 
     let errorMessage: string;
 

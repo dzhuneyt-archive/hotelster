@@ -26,7 +26,9 @@ export class BookingDeleteComponent implements OnInit {
 
   confirmDelete() {
     this.backend.request('api/bookings/' + this.data.id, 'DELETE').subscribe(res => {
-      this.dialogSelfRef.close(true);
+      if (res) {
+        this.dialogSelfRef.close(true);
+      }
     });
   }
 

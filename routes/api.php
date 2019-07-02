@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,37 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')
-     ->get('/user', function (Request $request) {
-         return $request->user();
-     });
+Route::group(['middleware' => 'auth:api'], function () {
+    // @TODO apply auth middleware
+    Route::apiResource('hotels', 'HotelController');
+    Route::apiResource('room_types', 'RoomTypeController');
+    Route::apiResource('rooms', 'RoomController');
+    Route::apiResource('bookings', 'BookingController');
+});
 
-
-// @TODO apply auth middleware
-Route::apiResource('hotels', 'HotelController');
-Route::apiResource('room_types', 'RoomTypeController');
-Route::apiResource('rooms', 'RoomController');
-Route::apiResource('bookings', 'BookingController');
-// @TODO Add API method to allow non-registered users to add a reservation (it's related to Wordpress task)
-
-Route::prefix('price')
-     ->group(function () {
-         Route::get(
-             '{room_type_id}',
-             'PricingPerRoomTypeController@show'
-         );
-         Route::put(
-             '{room_type_id}',
-             'PricingPerRoomTypeController@store'
-         );
-         Route::post(
-             '{room_type_id}',
-             'PricingPerRoomTypeController@store'
-         );
-         Route::delete(
-             '{room_type_id}',
-             'PricingPerRoomTypeController@delete'
-         );
-         // @TODO create POST room pricing endpoint
-     });
-
+Route::post('bookings/anonymous', 'BookingController@store');

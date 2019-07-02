@@ -14,13 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            UserSeeder::class,
             HotelsSeeder::class,
-
             RoomtypeSeeder::class,
             RoomSeeder::class,
-
             PricingPerRoomTypeSeeder::class,
-
             BookingSeeder::class,
         ]);
     }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BackendService} from 'src/app/backend.service';
 import {HotelInterface} from 'src/interfaces/hotel.interface';
 import {TitleService} from "src/app/title.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-hotel-details',
@@ -26,6 +27,7 @@ export class HotelDetailsComponent implements OnInit {
   constructor(
     private backend: BackendService,
     private title: TitleService,
+    private snackar: MatSnackBar,
   ) {
   }
 
@@ -40,6 +42,9 @@ export class HotelDetailsComponent implements OnInit {
   public save() {
     this.backend.request('api/hotels/1', 'PUT', this.hotel).subscribe((res: HotelInterface) => {
       this.hotel = res;
+      this.snackar.open('Saved successfully', null, {
+        duration: 3000,
+      });
     });
   }
 

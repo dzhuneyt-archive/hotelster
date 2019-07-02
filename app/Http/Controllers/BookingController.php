@@ -50,7 +50,23 @@ class BookingController extends Controller
             'customer_email' => 'email|required',
         ]);
         if ($validator->fails()) {
-            return $validator->errors();
+            return response($validator->errors(), 400);
+        }
+
+        return new BookingResource(Booking::create($request->all()));
+    }
+
+    public function storeAnonymous(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'room_id' => 'integer|required',
+            'start' => 'date|required',
+            'end' => 'date|required',
+            'customer_fullname' => 'string|required',
+            'customer_email' => 'email|required',
+        ]);
+        if ($validator->fails()) {
+            return response($validator->errors(), 400);
         }
 
         return new BookingResource(Booking::create($request->all()));

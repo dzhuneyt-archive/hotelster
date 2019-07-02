@@ -54,10 +54,9 @@ export class RoomTypeEditComponent implements OnInit {
         for (let key in error) {
           let value = error[key];
           this._snackBar.open(value, null, {
-            // duration: 2000,
+            duration: 2000,
             panelClass: 'error'
           });
-          // Use `key` and `value`
         }
       });
   }
