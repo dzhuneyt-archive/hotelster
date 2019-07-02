@@ -1,5 +1,5 @@
 export interface RoomTypeInterface {
   id?: number;
   name: string;
-  daily_price: number;
+  daily_price?: number;
 }

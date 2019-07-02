@@ -2,7 +2,7 @@ import {HotelInterface} from 'src/interfaces/hotel.interface';
 import {RoomTypeInterface} from 'src/interfaces/room-type.interface';
 
 export interface RoomInterface {
-  id: number;
+  id?: number;
   name: string;
   room_image_url: string;
   hotel?: HotelInterface;

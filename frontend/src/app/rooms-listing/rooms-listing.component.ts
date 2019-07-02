@@ -79,4 +79,14 @@ export class RoomsListingComponent implements OnInit {
     this.title.setTitle('Rooms management');
   }
 
+  createNew() {
+    this.dialogService.open(RoomEditComponent, {
+      data: {
+        id: null
+      }
+    }).afterClosed().subscribe(res => {
+      window.location.reload();
+    });
+  }
+
 }

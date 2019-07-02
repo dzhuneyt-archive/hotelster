@@ -12,7 +12,14 @@ import {map} from 'rxjs/operators';
 })
 export class RoomEditComponent implements OnInit {
 
-  public room: RoomInterface;
+  public room: RoomInterface = {
+    name: '',
+    room_image_url: '',
+    room_type: {
+      name: '',
+      daily_price: null,
+    }
+  };
 
   public roomTypes: RoomTypeInterface[] = [];
 
@@ -24,9 +31,14 @@ export class RoomEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.backend.request('api/rooms/' + this.data.id).subscribe((room: RoomInterface) => {
-      this.room = room;
-    });
+    if (this.data.id) {
+      this.backend.request('api/rooms/' + this.data.id).subscribe((room: RoomInterface) => {
+        this.room = room;
+      });
+      // Edit
+    } else {
+      // Create new
+    }
 
     this.backend
       .request('api/room_types')
@@ -42,7 +54,10 @@ export class RoomEditComponent implements OnInit {
     payload.room_type_id = this.room.room_type.id;
     delete payload.room_type;
     delete payload.hotel;
-    this.backend.request('api/rooms/' + this.data.id, 'PUT', payload).subscribe(result => {
+
+    const url = this.data.id ? 'api/rooms/' + this.data.id : 'api/rooms';
+    const method = this.data.id ? 'PUT' : 'POST';
+    this.backend.request(url, method, payload).subscribe(result => {
       console.log(result);
       this.dialogSelfRef.close(true);
     });
