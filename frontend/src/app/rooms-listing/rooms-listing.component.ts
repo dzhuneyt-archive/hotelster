@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Optional} from '@angular/core';
 import {TableAction, TableColumn} from 'src/app/table/table.component';
 import {RoomListDataSource} from 'src/app/rooms-listing/rooms-listing.datasource';
 import {RoomInterface} from 'src/interfaces/room.interface';
@@ -48,7 +48,9 @@ export class RoomsListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'edit'
@@ -62,7 +64,9 @@ export class RoomsListingComponent implements OnInit {
             id: row.id
           }
         }).afterClosed().subscribe(res => {
-          window.location.reload();
+          if (res) {
+            window.location.reload();
+          }
         });
       },
       icon: 'delete'
@@ -72,7 +76,7 @@ export class RoomsListingComponent implements OnInit {
   constructor(
     public dataSource: RoomListDataSource,
     public title: TitleService,
-    private dialogService: MatDialog,
+    @Optional() private dialogService: MatDialog,
   ) {
   }
 

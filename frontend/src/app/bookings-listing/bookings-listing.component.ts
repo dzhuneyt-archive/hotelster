@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Optional} from '@angular/core';
 import {TableAction, TableColumn} from 'src/app/table/table.component';
 import {TitleService} from 'src/app/title.service';
 import {BookingsListingDatasource} from 'src/app/bookings-listing/bookings-listing.datasource';
@@ -82,7 +82,7 @@ export class BookingsListingComponent implements OnInit {
 
   constructor(
     public title: TitleService,
-    public dataSource: BookingsListingDatasource,
+    @Optional() public dataSource: BookingsListingDatasource,
     private dialogService: MatDialog,
   ) {
   }

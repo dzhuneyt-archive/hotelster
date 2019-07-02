@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {BackendService} from 'src/app/backend.service';
 import {RoomTypeInterface} from 'src/interfaces/room-type.interface';
@@ -17,15 +17,15 @@ export class RoomTypeEditComponent implements OnInit {
   };
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogSelfRef: MatDialogRef<RoomTypeEditComponent>,
-    private backend: BackendService,
-    private _snackBar: MatSnackBar,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    @Optional() private dialogSelfRef: MatDialogRef<RoomTypeEditComponent>,
+    @Optional() private backend: BackendService,
+    @Optional() private _snackBar: MatSnackBar,
   ) {
   }
 
   ngOnInit() {
-    if (!this.isNewRecord()) {
+    if (!this.isNewRecord() && this.data) {
       this.backend
         .request('api/room_types/' + this.data.id)
         .pipe(map(res => res.data))
@@ -36,7 +36,7 @@ export class RoomTypeEditComponent implements OnInit {
   }
 
   isNewRecord(): boolean {
-    return !this.data.id;
+    return this.data && !this.data.id;
   }
 
   save() {

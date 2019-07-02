@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RoomDeleteComponent} from './room-delete.component';
+import {MatDialogModule} from "@angular/material";
+import {BackendService} from "src/app/backend.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('RoomDeleteComponent', () => {
   let component: RoomDeleteComponent;
@@ -8,7 +11,14 @@ describe('RoomDeleteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RoomDeleteComponent]
+      declarations: [RoomDeleteComponent],
+      providers: [
+        BackendService,
+      ],
+      imports: [
+        HttpClientTestingModule,
+        MatDialogModule,
+      ],
     })
       .compileComponents();
   }));

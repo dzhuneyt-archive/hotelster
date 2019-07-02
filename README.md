@@ -17,9 +17,14 @@ Copy `.env.example` to `.env` and configure DB credentials for Laravel
 
     npm run dev
     
+When all the build and testing process finishes, open http://localhost:4200
+    
 The above command will:
+* Install backend and frontend dependencies
 * Seed the database
 * Start a lite server for the REST APIs (Laravel)
+* Execute frontend unit tests
+* Build the frontend
 * Start a lite server for the frontend (Angular)
 
 
@@ -52,4 +57,4 @@ Open http://localhost:4200
 
 ## Code style
 
-Code style should follow PSR-1 and PSR-2 practices for PHP files
+Code style should follow PSR-1 and PSR-2 practices for PHP files and the [Angular code style guide](https://angular.io/guide/styleguide) for the frontend parts.

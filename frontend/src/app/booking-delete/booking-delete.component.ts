@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BackendService} from 'src/app/backend.service';
 import {BookingInterface} from 'src/interfaces/booking.interface';
@@ -12,16 +12,18 @@ export class BookingDeleteComponent implements OnInit {
   public booking: BookingInterface;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogSelfRef: MatDialogRef<BookingDeleteComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    @Optional() private dialogSelfRef: MatDialogRef<BookingDeleteComponent>,
     private backend: BackendService,
   ) {
   }
 
   ngOnInit() {
-    this.backend.request('api/bookings/' + this.data.id).subscribe((booking: BookingInterface) => {
-      this.booking = booking;
-    });
+    if (this.data && this.data.hasOwnProperty('id')) {
+      this.backend.request('api/bookings/' + this.data.id).subscribe((booking: BookingInterface) => {
+        this.booking = booking;
+      });
+    }
   }
 
   confirmDelete() {

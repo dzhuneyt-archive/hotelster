@@ -12,8 +12,7 @@ import {BookingsListingComponent} from './bookings-listing/bookings-listing.comp
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TableComponent} from './table/table.component';
-import {MatDialogModule, MatSnackBar, MatSnackBarModule, MatTableModule, MatToolbarModule} from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import {MatSnackBar} from '@angular/material';
 import {RoomEditComponent} from './room-edit/room-edit.component';
 import {RoomDeleteComponent} from './room-delete/room-delete.component';
 import {RoomTypeDeleteComponent} from './room-type-delete/room-type-delete.component';
@@ -53,11 +52,6 @@ import {BackendService} from "src/app/backend.service";
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentsModuleModule,
-    MatTableModule,
-    CdkTableModule,
-    MatToolbarModule,
-    MatDialogModule,
-    MatSnackBarModule,
     CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
   ],
   providers: [

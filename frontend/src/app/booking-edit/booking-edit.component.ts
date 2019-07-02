@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BackendService} from 'src/app/backend.service';
 import {BookingInterface} from 'src/interfaces/booking.interface';
@@ -16,26 +16,28 @@ export class BookingEditComponent implements OnInit {
   public rooms: RoomInterface[] = [];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogSelfRef: MatDialogRef<BookingEditComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    @Optional() private dialogSelfRef: MatDialogRef<BookingEditComponent>,
     private backend: BackendService,
   ) {
   }
 
   ngOnInit() {
-    this.backend
-      .request('api/bookings/' + this.data.id)
-      .pipe(map(res => res.data))
-      .subscribe((booking: BookingInterface) => {
-        this.booking = booking;
-      });
+    if (this.data) {
+      this.backend
+        .request('api/bookings/' + this.data.id)
+        .pipe(map(res => res.data))
+        .subscribe((booking: BookingInterface) => {
+          this.booking = booking;
+        });
 
-    this.backend
-      .request('api/rooms')
-      // .pipe(map(res => res.data))
-      .subscribe((rooms: RoomInterface[]) => {
-        this.rooms = rooms;
-      });
+      this.backend
+        .request('api/rooms')
+        // .pipe(map(res => res.data))
+        .subscribe((rooms: RoomInterface[]) => {
+          this.rooms = rooms;
+        });
+    }
   }
 
   public save() {

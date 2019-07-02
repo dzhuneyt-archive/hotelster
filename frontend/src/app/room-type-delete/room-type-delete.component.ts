@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {RoomTypeInterface} from 'src/interfaces/room-type.interface';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BackendService} from 'src/app/backend.service';
@@ -13,25 +13,27 @@ export class RoomTypeDeleteComponent implements OnInit {
   public roomType: RoomTypeInterface;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogSelfRef: MatDialogRef<RoomTypeDeleteComponent>,
-    private backend: BackendService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    @Optional() private dialogSelfRef: MatDialogRef<RoomTypeDeleteComponent>,
+    @Optional() private backend: BackendService,
   ) {
   }
 
   ngOnInit(): void {
-    this.backend
-      .request('api/room_types/' + this.data.id)
-      .pipe(map(res => res.data))
-      .subscribe((roomType: RoomTypeInterface) => {
-        this.roomType = roomType;
-      });
+    if (this.data) {
+      this.backend
+        .request('api/room_types/' + this.data.id)
+        .pipe(map(res => res.data))
+        .subscribe((roomType: RoomTypeInterface) => {
+          this.roomType = roomType;
+        });
+    }
   }
 
   confirmDelete() {
     this.backend
       .request('api/room_types/' + this.data.id, 'DELETE')
-      .subscribe((roomType: RoomTypeInterface) => {
+      .subscribe(() => {
         this.dialogSelfRef.close(true);
       });
   }
