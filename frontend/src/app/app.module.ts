@@ -10,9 +10,9 @@ import {RoomsListingComponent} from './rooms-listing/rooms-listing.component';
 import {RoomTypesListingComponent} from 'src/app/rooms-types-listing/room-types-listing.component';
 import {BookingsListingComponent} from './bookings-listing/bookings-listing.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TableComponent} from './table/table.component';
-import {MatDialogModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {MatDialogModule, MatSnackBarModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {RoomEditComponent} from './room-edit/room-edit.component';
 import {RoomDeleteComponent} from './room-delete/room-delete.component';
@@ -48,6 +48,7 @@ import {BookingsWrapperComponent} from './bookings-wrapper/bookings-wrapper.comp
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentsModuleModule,
@@ -55,6 +56,7 @@ import {BookingsWrapperComponent} from './bookings-wrapper/bookings-wrapper.comp
     CdkTableModule,
     MatToolbarModule,
     MatDialogModule,
+    MatSnackBarModule,
     CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
   ],
   providers: [],

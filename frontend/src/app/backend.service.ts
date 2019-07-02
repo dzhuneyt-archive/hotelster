@@ -53,14 +53,15 @@ export class BackendService {
   }
 
   // Displays the error message
-  private handleError(error: Response | any) {
+  private handleError(response: Response | any) {
+
     let errorMessage: string;
 
-    errorMessage = error.message ? error.message : error.toString();
+    errorMessage = response.error ? response.error : response.toString();
 
-    console.error(errorMessage);
-    // In real world application, call to log error to remote server
-    // logError(error);
+    console.error(typeof errorMessage);
+    // In real world application, call to log response to remote server
+    // logError(response);
 
     // This returns another Observable for the observer to subscribe to
     return throwError(errorMessage);

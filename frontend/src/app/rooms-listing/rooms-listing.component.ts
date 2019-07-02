@@ -23,6 +23,7 @@ export class RoomsListingComponent implements OnInit {
       code: 'image',
       header: 'Room Image',
       renderer: (room: RoomInterface) => {
+        if (!room.room_image_url) return;
         return `<img src="` + room.room_image_url + `"/>`;
       },
       raw: true,
@@ -85,7 +86,9 @@ export class RoomsListingComponent implements OnInit {
         id: null
       }
     }).afterClosed().subscribe(res => {
-      window.location.reload();
+      if (res) {
+        window.location.reload();
+      }
     });
   }
 

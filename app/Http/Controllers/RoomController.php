@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Room;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -38,7 +39,8 @@ class RoomController extends Controller
             'room_type_id' => 'required',
         ]);
         if ($validator->fails()) {
-            return $validator->errors();
+            Log::error('Room creation failed with errors: ' . print_r($validator->errors(), true));
+            return response($validator->errors(), 400);
         }
 
         return Room::create($request->all());
