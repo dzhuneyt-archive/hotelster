@@ -2,25 +2,47 @@
 
 https://app.codeline.io/#/projects/2562/tasks/24598
 
+# Requirements
+
+NodeJS, NPM and PHP
+
 # Development
 
 ## Configure DB credentials
 
-Copy .env.example to .env and configure DB credentials for Laravel
+Copy `.env.example` to `.env` and configure DB credentials for Laravel
 
-## Migrate and seed the database
+
+## Start a development environment
+
+    npm run dev
+    
+The above command will:
+* Seed the database
+* Start a lite server for the REST APIs (Laravel)
+* Start a lite server for the frontend (Angular)
+
+
+## Util commands
+
+
+### Install backend dependencies
+
+    php composer.phar install
+
+### Migrate and seed the database
 
     composer dump-autoload && php artisan migrate:refresh --seed
     
-## Start the lite server for REST APIs
+### Start the lite server for REST APIs
 
     composer serve
     
-## Install frontend dependencies
+### Install frontend dependencies
 
     cd frontend && npm install
     
-## Start the frontend lite server
+### Start the frontend lite server
 
     cd frontend && npm run start
 

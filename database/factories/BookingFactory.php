@@ -15,7 +15,8 @@ $factory->define(Booking::class, function (Faker $faker) {
     $date = $faker->dateTimeBetween('-1 month', '+6 months');
     $startDate = $date->format('Y-m-d');
 
-    $date->add(new DateInterval('P14D'));
+    $howManyDays = $faker->numberBetween(1, 14);
+    $date->add(new DateInterval("P{$howManyDays}D"));
     $endDate = $date->format('Y-m-d');
 
 

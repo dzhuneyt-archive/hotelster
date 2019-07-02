@@ -16,7 +16,7 @@ class BookingSeeder extends Seeder
     public function run()
     {
         // Increment if needed
-        $howManyBookings = 10;
+        $howManyBookings = 50;
 
         factory(Booking::class, $howManyBookings)
             ->create()
