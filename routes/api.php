@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth:api'], function () {
-    // @TODO apply auth middleware
     Route::apiResource('hotels', 'HotelController');
     Route::apiResource('room_types', 'RoomTypeController');
     Route::apiResource('rooms', 'RoomController');
