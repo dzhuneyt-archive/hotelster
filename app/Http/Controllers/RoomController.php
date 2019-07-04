@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RoomResource;
 use App\Room;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -16,9 +17,9 @@ class RoomController extends Controller
 
     public function index()
     {
-        return Room::with(['roomType', 'hotel'])
-                   ->orderBy('id')
-                   ->get();
+        return RoomResource::collection(Room::with(['roomType', 'hotel'])
+                                            ->orderBy('id')
+                                            ->get());
     }
 
     public function show($id)
@@ -28,7 +29,7 @@ class RoomController extends Controller
             'hotel'
         ])
                      ->find($id);
-        return $model;
+        return new RoomResource($model);
     }
 
     public function store(Request $request)

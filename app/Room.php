@@ -28,4 +28,9 @@ class Room extends Model
     {
         return $this->hasOne(Hotel::class, 'id', 'hotel_id');
     }
+
+    public function getDailyPriceAttribute()
+    {
+        return $this->roomType->daily_price;
+    }
 }

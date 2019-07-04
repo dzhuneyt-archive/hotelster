@@ -6,11 +6,11 @@
         "installDependenciesBackend": "php composer.phar install",
         "installDependenciesFrontend": "cd frontend && npm install",
         "seedBackend": "php artisan migrate:fresh --seed",
-        "backendLiteServer": "npx concurrently 'npm run tailLogs' 'php artisan serve'",
+        "backendLiteServer": "npx concurrently 'npm run tailLogs' 'php artisan serve --host=0.0.0.0'",
         "frontendLiteServer": "cd frontend && npm run start",
         "backendAndFrontendLiteServer": "npx concurrently 'npm run backendLiteServer' 'npm run frontendLiteServer'",
         "frontendTests": "cd frontend && npm run test:cli",
-        "tailLogs": "tail -f ./storage/logs/*.log"
+        "tailLogs": "tail -n0 -f ./storage/logs/*.log"
     },
     "devDependencies": {
         "axios": "^0.18",
