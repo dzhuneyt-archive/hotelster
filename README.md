@@ -1,3 +1,10 @@
+# Screenshots
+
+![Screenshot of the product](https://i.imgur.com/cqx7btF.png)
+![Screenshot of the product](https://i.imgur.com/CpeZwIF.png)
+![Screenshot of the product](https://i.imgur.com/URZiNfd.png)
+![Screenshot of the product](https://i.imgur.com/baAijvk.png)
+
 # Requirements
 
 NodeJS, NPM and PHP
