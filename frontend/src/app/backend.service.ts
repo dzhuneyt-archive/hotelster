@@ -3,11 +3,12 @@ import {HttpClient, HttpParams, HttpRequest} from "@angular/common/http";
 // All the RxJS stuff we need
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {environment} from "src/environments/environment";
 
 @Injectable()
 export class BackendService {
 
-  private host = 'http://localhost:8000';
+  private host = environment.host;
   private auth_token = 'api_token_1';
 
   constructor(
