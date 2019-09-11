@@ -1,3 +1,7 @@
+# CI build status
+
+[![CircleCI](https://circleci.com/gh/Dzhuneyt/hotel-room-booking.svg?style=svg)](https://circleci.com/gh/Dzhuneyt/hotel-room-booking)
+
 # Screenshots
 
 ![Screenshot of the product](https://i.imgur.com/cqx7btF.png)

@@ -31,4 +31,4 @@ jobs:
           name: Start container and verify it's working
           command: |
             set -x
-            docker-compose build
+            docker-compose build --parallel
