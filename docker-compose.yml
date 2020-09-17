@@ -8,9 +8,34 @@ services:
       - 8081:80
   backend:
     build:
-      context: ./
+      context: ./apps/backend
+    working_dir: /app
+    volumes:
+      - ./apps/backend:/app
     ports:
-      - 8082:80
+      - 8082:9000
+    depends_on:
+      - mariadb
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=my_user
+      - DB_DATABASE=my_database
+      - DB_PASSWORD=my_password
+      - LOG_CHANNEL=stderr
+      - APP_LOG=errorlog
+    # Required to listen on port 80
+    privileged: true
   frontend:
     build:
       context: ./frontend/
+    volumes:
+      # Frontend is served from this directory. Remember to build it first though, using scripts in /frontend/package.json
+      - ./frontend/dist/my-first-project:/var/www/html/
+
+  mariadb:
+    image: 'docker.io/bitnami/mariadb:10.2-debian-10'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=my_user
+      - MARIADB_DATABASE=my_database
+      - MARIADB_PASSWORD=my_password

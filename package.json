@@ -3,14 +3,15 @@
     "scripts": {
         "dev": "npm run installDeps && npm run seedBackend && npm run frontendTests && npm run backendAndFrontendLiteServer",
         "installDeps": "npx concurrently 'npm run installDependenciesBackend' 'npm run installDependenciesFrontend'",
-        "installDependenciesBackend": "php composer.phar install",
+        "installDependenciesBackend": "docker run --rm --interactive --tty --volume $PWD:/app  composer:2.0 install",
         "installDependenciesFrontend": "cd frontend && npm install",
         "seedBackend": "php artisan migrate:fresh --seed",
         "backendLiteServer": "npx concurrently 'npm run tailLogs' 'php artisan serve --host=0.0.0.0'",
         "frontendLiteServer": "cd frontend && npm run start",
         "backendAndFrontendLiteServer": "npx concurrently 'npm run backendLiteServer' 'npm run frontendLiteServer'",
         "frontendTests": "cd frontend && npm run test:cli",
-        "tailLogs": "tail -n0 -f ./storage/logs/*.log"
+        "tailLogs": "tail -n0 -f ./storage/logs/*.log",
+        "frontend-builder": "cd frontend && npm run build:watch"
     },
     "devDependencies": {
         "axios": "^0.18",

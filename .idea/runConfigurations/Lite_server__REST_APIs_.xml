@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lite server (REST APIs)" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/artisan" scriptParameters="serve">
+  <configuration default="false" name="Lite server (REST APIs)" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/apps/backend/artisan" scriptParameters="serve">
     <method v="2" />
   </configuration>
 </component>
