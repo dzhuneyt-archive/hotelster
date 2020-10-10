@@ -1,67 +1,38 @@
-# CI build status
+# Hotelster
 
-[![CircleCI](https://circleci.com/gh/Dzhuneyt/hotel-room-booking.svg?style=svg)](https://circleci.com/gh/Dzhuneyt/hotel-room-booking)
+### Web based hotel and booking management
+
+Current features include:
+* Define "room types" (e.g. single, double, apartment) and price per "room type"
+* Manage rooms with their attributes: room name, type, image
+* Manage basic hotel information: Name, Address, Logo, Manager contact information
+* Manage existing bookings in simple list and calendar view: edit, delete
 
 # Screenshots
 
-![Screenshot of the product](https://i.imgur.com/cqx7btF.png)
-![Screenshot of the product](https://i.imgur.com/CpeZwIF.png)
-![Screenshot of the product](https://i.imgur.com/URZiNfd.png)
-![Screenshot of the product](https://i.imgur.com/baAijvk.png)
+<a href="https://i.imgur.com/cqx7btF.png"><img src="https://i.imgur.com/cqx7btF.png" alt="Screenshot 1" width="250"/></a>
+<a href="https://i.imgur.com/CpeZwIF.png"><img src="https://i.imgur.com/CpeZwIF.png" alt="Screenshot 1" width="250"/></a>
+<a href="https://i.imgur.com/URZiNfd.png"><img src="https://i.imgur.com/URZiNfd.png" alt="Screenshot 1" width="250"/></a>
+<a href="https://i.imgur.com/baAijvk.png"><img src="https://i.imgur.com/baAijvk.png" alt="Screenshot 1" width="250"/></a>
 
 # Requirements
 
-NodeJS, NPM and PHP
+Node, NPM, Docker, Docker-Compose
 
 # Development
 
-## Configure DB credentials
+1. Build the frontend: `cd ./apps/frontend && npm run build:watch`
+2. Start the stack of Docker containers for local development: `npm run dev`
+3. Open http://localhost:8081
 
-Copy `.env.example` to `.env` and configure DB credentials for Laravel
+# Tech:
 
-
-## Start a development environment
-
-    npm run dev
-    
-When all the build and testing process finishes, open http://localhost:4200
-    
-The above command will:
-* Install backend and frontend dependencies
-* Seed the database
-* Start a lite server for the REST APIs (Laravel)
-* Execute frontend unit tests
-* Build the frontend
-* Start a lite server for the frontend (Angular)
-
-
-## Util commands
-
-
-### Install backend dependencies
-
-    php composer.phar install
-
-### Migrate and seed the database
-
-    composer dump-autoload && php artisan migrate:refresh --seed
-    
-### Start the lite server for REST APIs
-
-    composer serve
-    
-### Install frontend dependencies
-
-    cd frontend && npm install
-    
-### Start the frontend lite server
-
-    cd frontend && npm run start
-
-Open http://localhost:4200
-
-# Contributing
+* Backend, Rest APIs - Laravel
+* Frontend - Angular
+* Database - MariaDB
+* Development environment - NPM, Docker, Docker-Compose, NGINX, Concurrently
 
 ## Code style
 
-Code style should follow PSR-1 and PSR-2 practices for PHP files and the [Angular code style guide](https://angular.io/guide/styleguide) for the frontend parts.
+* Backend - PSR1 and PSR2
+* Frontend - [Angular code style guide](https://angular.io/guide/styleguide)
